@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal - Login</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      background: linear-gradient(120deg, #0d6efd, #6610f2);
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      transition: opacity 0.8s ease;
+    }
+
+    body.fade-out {
+      opacity: 0;
+    }
+
+    .login-container {
+      background: white;
+      padding: 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      text-align: center;
+      margin-bottom: 1.5rem;
+      font-weight: 600;
+    }
+
+    .form-control:focus {
+      border-color: #0d6efd;
+      box-shadow: none;
+    }
+
+    .btn-primary {
+      width: 100%;
+      font-weight: 600;
+    }
+
+    .footer-text {
+      text-align: center;
+      margin-top: 1.5rem;
+      font-size: 14px;
+      color: #6c757d;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Student Portal Login</h2>
+    <form id="loginForm">
+      <div class="mb-3">
+        <label for="username" class="form-label">Email or USN</label>
+        <input type="text" class="form-control" id="username" required>
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" required>
+      </div>
+      <button type="submit" class="btn btn-primary">Login</button>
+    </form>
+
+    <div class="text-center mt-2">
+      <button type="button" class="btn btn-link" data-bs-toggle="modal" data-bs-target="#forgotPasswordModal">
+        Forgot Password?
+      </button>
+    </div>
+
+    <div class="text-center mt-3">
+      <button class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#newStudentModal">
+        New Student? Get Login Help
+      </button>
+    </div>
+
+    <div class="footer-text">
+      © 2025 Your College Name
+    </div>
+  </div>
+
+  <!-- New Student Help Modal -->
+  <div class="modal fade" id="newStudentModal" tabindex="-1" aria-labelledby="newStudentModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="newStudentModalLabel">How to Get Your Login Credentials</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ul>
+            <li>Your USN is your username (e.g., <strong>1RV23CS001</strong>).</li>
+            <li>Your default password is your date of birth in DDMMYYYY format.</li>
+            <li>Accounts are created by the administration before the semester begins.</li>
+            <li>If you're logging in for the first time or forgot your credentials, contact student affairs.</li>
+            <li>Email support: <a href="mailto:support@college.edu">support@college.edu</a></li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Got it!</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Forgot Password Modal -->
+  <div class="modal fade" id="forgotPasswordModal" tabindex="-1" aria-labelledby="forgotPasswordModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <form id="forgotPasswordForm">
+          <div class="modal-header">
+            <h5 class="modal-title" id="forgotPasswordModalLabel">Forgot Password</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <label for="forgotEmail" class="form-label">Enter your registered email:</label>
+            <input type="email" class="form-control" id="forgotEmail" required />
+          </div>
+          <div class="modal-footer">
+            <button type="submit" class="btn btn-primary">Send Reset Link</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bootstrap JS -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+  <!-- Login Script -->
+  <script>
+    const validUsers = [
+      { username: "ADMIN", password: "12345" },
+      { username: "1RV23CS001", password: "28092005" }
+    ];
+
+    document.getElementById("loginForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+
+      const username = document.getElementById("username").value.trim();
+      const password = document.getElementById("password").value;
+      const loginButton = this.querySelector("button[type='submit']");
+
+      const userFound = validUsers.find(
+        user => user.username === username && user.password === password
+      );
+
+      if (userFound) {
+        // Show spinner and disable button
+        loginButton.innerHTML = `<span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Logging in...`;
+        loginButton.disabled = true;
+
+        // Fade out and redirect
+        setTimeout(() => {
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = "index.html";
+          }, 800);
+        }, 1000); // 1 second loading spinner delay
+      } else {
+        alert("Invalid username or password.");
+      }
+    });
+
+    // Forgot Password Handler
+    document.getElementById("forgotPasswordForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const email = document.getElementById("forgotEmail").value.trim();
+      const knownEmails = ["student1@college.edu", "student2@college.edu","srujan@gmail.com"];
+
+      if (knownEmails.includes(email)) {
+        alert(`Reset link sent to ${email} (simulated).`);
+      } else {
+        alert("Email not found. Please contact support.");
+      }
+
+      const modalEl = document.getElementById("forgotPasswordModal");
+      const modal = bootstrap.Modal.getInstance(modalEl);
+      modal.hide();
+
+      document.getElementById("forgotEmail").value = "";
+    });
+  </script>
+
+</body>
+</html>

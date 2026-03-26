@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Student Portal - Timetable</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"/>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet"/>
+
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f8f9fa;
+    }
+
+    /* Sidebar (standardized) */
+    .sidebar {
+      height: 100vh;
+      width: 250px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      background: #1f2937;
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      padding-top: 1.5rem;
+      box-shadow: 2px 0 6px rgba(0, 0, 0, 0.15);
+    }
+
+    .sidebar img {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      display: block;
+      margin: 0 auto 10px;
+      border: 3px solid #fff;
+    }
+
+    .sidebar h5 {
+      text-align: center;
+      margin-bottom: 1rem;
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .sidebar hr {
+      border-color: rgba(255, 255, 255, 0.15);
+      margin: 1rem 0;
+    }
+
+    .sidebar a {
+      display: block;
+      color: #cbd5e1;
+      padding: 12px 20px;
+      text-decoration: none;
+      font-size: 15px;
+      transition: 0.3s;
+      border-left: 3px solid transparent;
+    }
+
+    .sidebar a:hover,
+    .sidebar a.active {
+      background: #374151;
+      color: #fff;
+      border-left: 3px solid #0d6efd;
+    }
+
+    /* Page content */
+    .content {
+      margin-left: 250px;
+      padding: 30px;
+    }
+
+    .content h2 {
+      font-weight: 600;
+      margin-bottom: 1.8rem;
+    }
+
+    /* Timetable styling */
+    .card {
+      border-radius: 12px;
+      border: none;
+    }
+
+    .timetable th,
+    .timetable td {
+      text-align: center;
+      vertical-align: middle;
+      font-size: 14px;
+      padding: 12px;
+    }
+
+    .timetable th {
+      background-color: #0d6efd;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Sidebar -->
+  <div class="sidebar">
+    <img src="https://randomuser.me/api/portraits/men/31.jpg" alt="Student Photo" />
+    <h5>Arjun Mehta</h5>
+    <hr />
+    <a href="index.html"><i class="bi bi-house-door me-2"></i> Home</a>
+    <a href="attendance.html"><i class="bi bi-clipboard-check me-2"></i> Attendance</a>
+    <a href="results.html"><i class="bi bi-bar-chart-line me-2"></i> Results</a>
+    <a href="profile.html"><i class="bi bi-person-badge me-2"></i> Profile</a>
+    <a href="timetable.html" class="active"><i class="bi bi-calendar-week me-2"></i> Timetable</a>
+    <a href="fees.html"><i class="bi bi-cash-stack me-2"></i> Fee Payment</a>
+    <a href="library.html"><i class="bi bi-book me-2"></i> Library</a>
+    <a href="notices.html"><i class="bi bi-bell me-2"></i> Notices</a>
+    <a href="placement.html"><i class="bi bi-briefcase me-2"></i> Placement</a>
+    <a href="uploads.html"><i class="bi bi-upload me-2"></i> Uploads</a>
+    <a href="logout.html"><i class="bi bi-box-arrow-right me-2"></i> Logout</a>
+  </div>
+
+  <!-- Content -->
+  <div class="content">
+    <h2><i class="bi bi-calendar-week"></i> Weekly Timetable</h2>
+
+    <div class="card shadow-sm">
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered timetable align-middle">
+            <thead>
+              <tr>
+                <th>Day / Time</th>
+                <th>9:00 - 10:00</th>
+                <th>10:00 - 11:00</th>
+                <th>11:00 - 12:00</th>
+                <th>12:00 - 1:00</th>
+                <th>1:00 - 2:00</th>
+                <th>2:00 - 3:00</th>
+                <th>3:00 - 4:00</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <th>Monday</th>
+                <td>Math</td>
+                <td>Physics</td>
+                <td>Chemistry</td>
+                <td rowspan="6" class="bg-light">Lunch</td>
+                <td>Computer Science</td>
+                <td>English</td>
+                <td>Sports</td>
+              </tr>
+              <tr>
+                <th>Tuesday</th>
+                <td>Biology</td>
+                <td>Math</td>
+                <td>English</td>
+                <td>Chemistry</td>
+                <td>Library</td>
+                <td>Workshop</td>
+              </tr>
+              <tr>
+                <th>Wednesday</th>
+                <td>Computer Science</td>
+                <td>Physics</td>
+                <td>Math</td>
+                <td>Chemistry</td>
+                <td>Seminar</td>
+                <td>Sports</td>
+              </tr>
+              <tr>
+                <th>Thursday</th>
+                <td>Biology</td>
+                <td>Math</td>
+                <td>English</td>
+                <td>Computer Lab</td>
+                <td>Elective</td>
+                <td>Workshop</td>
+              </tr>
+              <tr>
+                <th>Friday</th>
+                <td>Physics</td>
+                <td>Chemistry</td>
+                <td>Computer Science</td>
+                <td>Math</td>
+                <td>English</td>
+                <td>Sports</td>
+              </tr>
+              <tr>
+                <th>Saturday</th>
+                <td>Seminar</td>
+                <td>Library</td>
+                <td>English</td>
+                <td>Workshop</td>
+                <td colspan="2">Club Activities</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
